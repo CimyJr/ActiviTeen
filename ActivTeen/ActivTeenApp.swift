@@ -11,7 +11,7 @@ import SwiftUI
 struct ActivTeenApp: App {
     var body: some Scene {
         WindowGroup {
-            Cards()
+            ContentView()
         }
     }
 }

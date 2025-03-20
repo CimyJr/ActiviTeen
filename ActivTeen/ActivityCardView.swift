@@ -18,7 +18,7 @@ struct ActivityCardView: View {
         
             .overlay(
                 Text(text)
-                   
+
                     .font(.system(size: 15))
                     .font(.body)
                     .fontWeight(.regular)
