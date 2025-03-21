@@ -38,7 +38,7 @@ struct ActivitiesView: View {
                     Button(action: {
                         activeSheet = activity.destination
                     }) {
-                        ActivityCardView(text: activity.text)
+                        Card(text: activity.text)
                     }
                 }
             }
