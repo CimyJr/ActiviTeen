@@ -1,24 +1,29 @@
-////
-////  homePage.swift
-////  ActivTeen
-////
-////  Created by user on 20/03/25.
-////
 //
-//import SwiftUI
+//  homePage.swift
+//  ActivTeen
 //
-//struct homePage: View {
-//    var body: some View {
-////        homeCard(title: "Fotos", isOn: true, width: 360, height: 160)
-////        HStack {
-////            homeCard(title: "Livros", isOn: true, width: 172, height: 160)
-////            homeCard(title: "Musicas", isOn: true, width: 172, height: 160)
-////
-////        }
-////        homeCard(title: "Desenhos", isOn: true, width: 360, height: 160)
-////    }
-//}
+//  Created by user on 20/03/25.
 //
-//#Preview {
-////    homePage()
-//}
+
+import SwiftUI
+
+struct homePage: View {
+    var body: some View {
+        VStack(spacing: 16){
+            Card(text: "Desafios", image: "book")
+            HStack(spacing: 16) {
+                Card(text: "Desenhos", image: "book")
+                Card(text: "Musicas")
+            }
+            HStack(spacing: 16) {
+                Card(text: "Livros")
+                Card(text: "Musicas")
+            }
+        }.padding()
+        
+    }
+}
+
+#Preview {
+    homePage()
+}
