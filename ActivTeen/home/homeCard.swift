@@ -16,7 +16,8 @@ struct homeCard: View {
         
         
         ZStack(alignment: .bottom) {
-            RoundedRectangle(cornerRadius: 10).stroke(Color.black, lineWidth: 1)
+            RoundedRectangle(cornerRadius: 10)
+                .stroke(Color.black, lineWidth: 2)
                 .fill(Color(color))
                 .frame(width: .infinity, height: .infinity)
             

@@ -26,7 +26,7 @@ struct Card: View {
                 }
                 
                 
-                Text("Desenhe algo...")
+                Text(text)
                     .font(.system(size: 15))
                     .font(.body)
                     .fontWeight(.regular)

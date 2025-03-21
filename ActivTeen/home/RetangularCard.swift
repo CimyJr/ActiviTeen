@@ -7,12 +7,23 @@
 
 import SwiftUI
 
-struct RetangularCard: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+struct CustomStyleRectangular: ViewModifier {
+    let widthx = UIScreen.main.bounds.width
+    let height = UIScreen.main.bounds.height
+
+    func body(content: Content) -> some View {
+
+        content
+            .frame(
+                width: widthx * (360 / 393),
+                height: height * (211 / 852))
+
     }
 }
 
-#Preview {
-    RetangularCard()
+extension View {
+    func cardRectangular() -> some View {
+        modifier(CustomStyleRectangular())
+    }
 }
+
