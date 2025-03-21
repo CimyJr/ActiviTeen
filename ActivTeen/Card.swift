@@ -1,5 +1,5 @@
 //
-//  ActivityCardView.swift
+//  Card.swift
 //  ActivTeen
 //
 //  Created by found on 20/03/25.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ActivityCardView: View {
+struct Card: View {
     var text: String
     var image: String?
 
@@ -39,5 +39,5 @@ struct ActivityCardView: View {
 }
 
 #Preview {
-    ActivityCardView(text: "Texto", image: "book")
+    Card(text: "Texto", image: "book")
 }

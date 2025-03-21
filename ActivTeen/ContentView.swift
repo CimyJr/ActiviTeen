@@ -17,9 +17,7 @@ struct ContentView: View {
 struct CombinedPreview: View {
     var body: some View {
         VStack {
-            TittleActivitiesView()
-                
-            ActivitiesView()
+            Card(text: "oi")
                 
         } .ignoresSafeArea()
     }
