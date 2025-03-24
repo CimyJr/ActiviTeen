@@ -9,23 +9,12 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        
         Image(systemName: "cat")
 }
 }
 
-struct CombinedPreview: View {
-    var body: some View {
-        VStack {
-            Card(text: "oi")
-                
-        } .ignoresSafeArea()
-    }
-    
-}
-
 #Preview {
-    CombinedPreview()
+    ContentView()
 }
 
 

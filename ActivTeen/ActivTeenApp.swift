@@ -6,12 +6,13 @@
 //
 
 import SwiftUI
-
+import SwiftData
 @main
 struct ActivTeenApp: App {
     var body: some Scene {
         WindowGroup {
             homePage()
+                .modelContainer(for: Song.self, inMemory: false)
         }
     }
 }

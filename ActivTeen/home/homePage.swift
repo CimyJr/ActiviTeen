@@ -34,7 +34,7 @@ struct homePage: View {
                         text: "Desenhos", image: "designs", color: "designs"
                     ).cardSquare()
                     NavigationLink{
-                        ActivitiesView()
+                        CombinedPreview()
                     }label: {
                         homeCard(text: "Musicas", image: "music", color: "music")
                             .cardSquare()

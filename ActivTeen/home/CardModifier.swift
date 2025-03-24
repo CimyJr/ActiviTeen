@@ -26,3 +26,4 @@ extension View {
         modifier(CustomStyleSquare())
     }
 }
+//Agrupar componentes numa pasta
