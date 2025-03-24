@@ -23,9 +23,12 @@ struct homePage: View {
                     Image(systemName: "gearshape").resizable().frame(
                         width: 40, height: 40)
                 }.padding(.top, 31)
-
-                homeCard(text: "Desafios", image: "challengers",color: "challengers")
-                    .padding(.top, 9).cardRectangular()
+                NavigationLink{
+                    ChallengersPage()
+                }label: {
+                    homeCard(text: "Desafios", image: "challengers",color: "challengers")
+                        .padding(.top, 9).cardRectangular()
+                }
                 HStack(spacing: 16) {
                     homeCard(
                         text: "Desenhos", image: "designs", color: "designs"
