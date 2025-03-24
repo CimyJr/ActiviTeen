@@ -21,19 +21,31 @@ class Song {
 struct WriteSongView: View {
     
     var descriptionTitle: String
+    var descriptionSubtitle: String?
     
     @State private var text: String = ""
     @Environment(\.modelContext) private var modelContext
     @Query private var songs: [Song]
     
     var body: some View {
-        VStack{
+        
+        VStack {
+            
             HStack {
                 Text(descriptionTitle)
                     .font(.title)
                     .bold()
+               
+                
+            } .padding()
+            
+            HStack{
+                if let descriptionSubtitle = descriptionSubtitle {
+                    Text(descriptionSubtitle)
+                        .font(.subheadline)
+                }
             }
-            .padding()
+            
             
             Form {
                 Section {
@@ -65,7 +77,7 @@ struct WriteSongView: View {
 }
 
 #Preview {
-    WriteSongView(descriptionTitle: "Escreva uma música curta sobre o seu dia em até 30 palavras")
+    WriteSongView(descriptionTitle: "Escreva uma música curta sobre o seu dia em até 30 palavras",descriptionSubtitle: "oiiiiiii")
         .modelContainer(for: Song.self, inMemory: false)
 }
 
