@@ -31,21 +31,21 @@ struct ActivitiesView: View {
             isCompleted: false,
             color1: .darkgreenTest,
             color2: .greenTest,
-            tela: AnyView(Color.red)
+            tela: AnyView(WriteSongView(descriptionTitle: "Crie uma playlist com 10 músicas que reflitam seu humor hoje"))
         ),
         Activity(
             text: "Liste seu Top 5 de músicas favoritas do momento",
             isCompleted: false,
             color1: .darkgreenTest,
             color2: .greenTest,
-            tela: AnyView(ContentView())
+            tela: AnyView(WriteSongView(descriptionTitle: "Liste seu Top 5 de músicas favoritas do momento"))
         ),
         Activity(
             text: "Crie uma paródia simples de uma música favorita",
             isCompleted: false,
             color1: .darkgreenTest,
             color2: .greenTest,
-            tela: AnyView(ContentView())
+            tela: AnyView(WriteSongView(descriptionTitle: "Crie uma paródia simples de uma música favorita"))
         )
     ]
     
@@ -90,7 +90,7 @@ struct ActivitiesView: View {
     NavigationStack {
         CombinedPreview()
     }
-        .modelContainer(for: Song.self, inMemory: true)
+        .modelContainer(for: Song.self, inMemory: false)
 }
 
 
