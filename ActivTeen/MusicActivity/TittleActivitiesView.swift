@@ -12,17 +12,16 @@ struct TittleActivitiesView: View {
     var titleActivities: String
     var subTittleActivities: String
     var imageActivities: String
+    var colorHeader: Color
     
     var body: some View {
         
             VStack(spacing: 20){
                 ZStack {
                     Rectangle()
-                        .fill(Color.greenTest)
-                        .frame(height: 200)
+                        .fill(colorHeader)
                         Image(imageActivities)
-                        .padding(.top,35)
-                }
+                } .cardHeader()
                     
                 
                 VStack(alignment: .leading, spacing: 5){
@@ -45,5 +44,5 @@ struct TittleActivitiesView: View {
 }
 
 #Preview {
-    TittleActivitiesView(titleActivities: "Atividades", subTittleActivities: "Realize as atividades e bata sua meta diária", imageActivities: "Seta")
+    TittleActivitiesView(titleActivities: "Atividades", subTittleActivities: "Realize as atividades e bata sua meta diária", imageActivities: "Seta", colorHeader: Color.greenTest)
 }
