@@ -27,40 +27,41 @@ struct WriteSongView: View {
     @Query private var songs: [Song]
     
     var body: some View {
-        
-        HStack {
-            Text(descriptionTitle)
-                .font(.title)
-                .bold()
-        }
-        .padding()
-        
-        Form {
-            Section {
-                ZStack (alignment: .bottomLeading){
-                    TextField("Digite aqui...", text: $text, axis: .vertical)
-                        .textFieldStyle(.plain)
-                       .frame(height: 200, alignment: .top)
+        VStack{
+            HStack {
+                Text(descriptionTitle)
+                    .font(.title)
+                    .bold()
+            }
+            .padding()
+            
+            Form {
+                Section {
+                    ZStack (alignment: .bottomLeading){
+                        TextField("Digite aqui...", text: $text, axis: .vertical)
+                            .textFieldStyle(.plain)
+                            .frame(height: 200, alignment: .top)
+                    }
+                }
+            }
+            .scrollContentBackground(.hidden)
+            .onAppear {
+                
+                if let savedSong = songs.first {
+                    text = savedSong.text
+                }
+            }
+            .onDisappear {
+                
+                if let savedSong = songs.first {
+                    savedSong.text = text
+                } else {
+                    let newSong = Song(text: text)
+                    modelContext.insert(newSong)
                 }
             }
         }
-        .scrollContentBackground(.hidden)
-        .onAppear {
-            
-            if let savedSong = songs.first {
-                text = savedSong.text
-            }
-        }
-        .onDisappear {
-            
-            if let savedSong = songs.first {
-                savedSong.text = text
-            } else {
-                let newSong = Song(text: text)
-                modelContext.insert(newSong)
-            }
-        }
-    }
+    } 
 }
 
 #Preview {

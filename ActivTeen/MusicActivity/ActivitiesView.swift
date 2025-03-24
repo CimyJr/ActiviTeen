@@ -20,30 +20,34 @@ struct Activity: Identifiable {
 struct ActivitiesView: View {
     @State private var activities: [Activity] = [
         Activity(
-            text: "Escreva uma música curta sobre o seu dia em até 30 palavras", isCompleted: false,
+            text: "Escreva uma música curta sobre o seu dia em até 30 palavras",
+            isCompleted: false,
             color1: .darkgreenTest,
             color2: .greenTest,
-            tela: AnyView(WriteSongView(descriptionTitle:"Escreva uma música curta sobre o seu dia em até 30 palavras"))),
-        
+            tela: AnyView(WriteSongView(descriptionTitle: "Escreva uma música curta sobre o seu dia em até 30 palavras"))
+        ),
         Activity(
             text: "Crie uma playlist com 10 músicas que reflitam seu humor hoje",
             isCompleted: false,
             color1: .darkgreenTest,
             color2: .greenTest,
-            tela: AnyView(Color.red)),
-        
-        Activity(text: "Liste seu Top 5 de músicas favoritas do momento", isCompleted: false,
-                 color1: .darkgreenTest,
-                 color2: .greenTest,
-                 tela: AnyView(ContentView())),
-        
-        Activity(text: "Crie uma paródia simples de uma música favorita", isCompleted: false,
-                 color1: .darkgreenTest,
-                 color2: .greenTest,
-                 tela: AnyView(ContentView()))
+            tela: AnyView(Color.red)
+        ),
+        Activity(
+            text: "Liste seu Top 5 de músicas favoritas do momento",
+            isCompleted: false,
+            color1: .darkgreenTest,
+            color2: .greenTest,
+            tela: AnyView(ContentView())
+        ),
+        Activity(
+            text: "Crie uma paródia simples de uma música favorita",
+            isCompleted: false,
+            color1: .darkgreenTest,
+            color2: .greenTest,
+            tela: AnyView(ContentView())
+        )
     ]
-    
-    @State private var selected: Activity?
     
     var progress: Double {
         let completedCount = activities.filter { $0.isCompleted }.count
@@ -52,42 +56,42 @@ struct ActivitiesView: View {
     
     var body: some View {
         VStack {
-            HStack{
+            HStack {
                 ProgressBarView(progress: .constant(progress), colorBar: Color.darkgreenTest)
             }
             
             LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 20) {
-                ForEach(activities.indices, id: \.self) { index in
-                    VStack {
-                        Button(action: {
-                            selected = activities[index]
-                        }) {
-                            ActivityCardView(
-                                isCompleted: $activities[index].isCompleted,
-                                text: activities[index].text,
-                                color1: activities[index].color2,
-                                color2: activities[index].color1
-                            )
-                            .cardSquare()
-                        }
-                        
+                ForEach(activities) { activity in
+                    NavigationLink(destination: activity.tela) {
+                        ActivityCardView(
+                            isCompleted: Binding(
+                                get: { activity.isCompleted },
+                                set: { newValue in
+                                    if let index = activities.firstIndex(where: { $0.id == activity.id }) {
+                                        activities[index].isCompleted = newValue
+                                    }
+                                }
+                            ),
+                            text: activity.text,
+                            color1: activity.color2,
+                            color2: activity.color1
+                        )
+                        .cardSquare()
                     }
+                    .buttonStyle(.plain)
                 }
             }
             .padding()
-            .sheet(item: $selected) { activity in
-                activity.tela
-                    .presentationDetents([.fraction(0.85)])
-
-            }
         }
     }
-    
+}
+
+#Preview {
+    NavigationStack {
+        CombinedPreview()
+    }
+        .modelContainer(for: Song.self, inMemory: true)
 }
 
 
-//#Preview {
-//    CombinedPreview()
-//        .modelContainer(for: Song.self, inMemory: true)
-//}
 

@@ -21,6 +21,7 @@ struct TittleActivitiesView: View {
                     Rectangle()
                         .fill(colorHeader)
                         Image(imageActivities)
+                        
                 } .cardHeader()
                     
                 
