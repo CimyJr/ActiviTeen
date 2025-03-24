@@ -1,101 +1,92 @@
-import SwiftUI
+//
+//  ActivitiesView.swift
+//  ActivTeen
+//
+//  Created by found on 20/03/25.
+//
 
-enum DestinationView: Identifiable {
-    case tela1
-    case tela2
-    case tela3
-    case tela4
-    
-    var id: Int {
-        switch self {
-        case .tela1: return 1
-        case .tela2: return 2
-        case .tela3: return 3
-        case .tela4: return 4
-        }
-    }
+import SwiftUI
+import SwiftData
+
+struct Activity: Identifiable {
+    let id = UUID()
+    var text: String
+    var isCompleted: Bool
+    var color1: Color
+    var color2: Color
+    var tela: AnyView
 }
 
 struct ActivitiesView: View {
-    
-    let activities: [(text: String, destination: DestinationView)] = [
-        ("Escreva uma música curta sobre o seu dia em até 200 palavras.", .tela1),
-        ("Crie uma playlist com 10 músicas que reflitam seu humor hoje.", .tela2),
-        ("Faça um Top 5 com suas músicas favoritas do momento.", .tela3),
-        ("Crie uma paródia simples de uma música favorita.", .tela4)
+    @State private var activities: [Activity] = [
+        Activity(
+            text: "Escreva uma música curta sobre o seu dia em até 30 palavras", isCompleted: false,
+            color1: .darkgreenTest,
+            color2: .greenTest,
+            tela: AnyView(WriteSongView(descriptionTitle:"Escreva uma música curta sobre o seu dia em até 30 palavras"))),
+        
+        Activity(
+            text: "Crie uma playlist com 10 músicas que reflitam seu humor hoje",
+            isCompleted: false,
+            color1: .darkgreenTest,
+            color2: .greenTest,
+            tela: AnyView(Color.red)),
+        
+        Activity(text: "Liste seu Top 5 de músicas favoritas do momento", isCompleted: false,
+                 color1: .darkgreenTest,
+                 color2: .greenTest,
+                 tela: AnyView(ContentView())),
+        
+        Activity(text: "Crie uma paródia simples de uma música favorita", isCompleted: false,
+                 color1: .darkgreenTest,
+                 color2: .greenTest,
+                 tela: AnyView(ContentView()))
     ]
     
-    let columns = [GridItem(.flexible()), GridItem(.flexible())]
+    @State private var selected: Activity?
     
-   
-    @State private var activeSheet: DestinationView? = nil
+    var progress: Double {
+        let completedCount = activities.filter { $0.isCompleted }.count
+        return Double(completedCount) / Double(activities.count)
+    }
     
     var body: some View {
-        NavigationView {
-            LazyVGrid(columns: columns, spacing: 15) {
-                ForEach(activities, id: \.text) { activity in
-                
-                    Button(action: {
-                        activeSheet = activity.destination
-                    }) {
-                        ActivityCardView(text: activity.text)
+        VStack {
+            
+            ProgressBarView(progress: .constant(progress), colorBar: Color.darkgreenTest)
+            
+            LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 20) {
+                ForEach(activities.indices, id: \.self) { index in
+                    VStack {
+                        Button(action: {
+                            selected = activities[index]
+                        }) {
+                            ActivityCardView(
+                                isCompleted: $activities[index].isCompleted,
+                                text: activities[index].text,
+                                color1: activities[index].color2,
+                                color2: activities[index].color1
+                            )
+                            .frame(width: 172, height: 181)
+                        }
+                        
                     }
                 }
             }
-            .padding(15)
-            Spacer()
-        }
-        .sheet(item: $activeSheet) { destination in
-            getDestinationView(for: destination)
+            .padding()
+            .sheet(item: $selected) { activity in
+                activity.tela
+                    .presentationDetents([.fraction(0.85)])
+
+            }
         }
     }
     
-    private func getDestinationView(for destination: DestinationView) -> some View {
-        switch destination {
-        case .tela1:
-            return AnyView(Tela1())
-        case .tela2:
-            return AnyView(Tela2())
-        case .tela3:
-            return AnyView(Tela3())
-        case .tela4:
-            return AnyView(Tela4())
-        }
-    }
 }
 
-struct Tela1: View {
-    var body: some View {
-        Text("Tela 1")
-            .font(.title)
-            .padding()
-    }
-}
-
-struct Tela2: View {
-    var body: some View {
-        Text("Tela 2")
-            .font(.title)
-            .padding()
-    }
-}
-
-struct Tela3: View {
-    var body: some View {
-        Text("Tela 3")
-            .font(.title)
-            .padding()
-    }
-}
-
-struct Tela4: View {
-    var body: some View {
-        Text("Tela 4")
-            .font(.title)
-            .padding()
-    }
-}
 
 #Preview {
-    ActivitiesView()
+    CombinedPreview()
+        .modelContainer(for: Song.self, inMemory: true)
 }
+

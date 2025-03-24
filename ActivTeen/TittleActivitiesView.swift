@@ -8,29 +8,42 @@
 import SwiftUI
 
 struct TittleActivitiesView: View {
+    
+    var titleActivities: String
+    var subTittleActivities: String
+    var imageActivities: String
+    
     var body: some View {
         
             VStack(spacing: 20){
-                Rectangle()
-                    .fill(Color.gray.opacity(0.3))
-                    .frame(height: 200)
-                    .overlay(Text("Image").foregroundColor(.black))
+                ZStack {
+                    Rectangle()
+                        .fill(Color.greenTest)
+                        .frame(height: 200)
+                        Image(imageActivities)
+                        .padding(.top,35)
+                }
                     
                 
                 VStack(alignment: .leading, spacing: 5){
-                    Text("Atividades")
-                        .font(.title)
-                        .fontWeight(.bold)
-                    
-                    Text("Realize as atividades e bata sua meta diária ")
-                        .font(.subheadline)
-                        .foregroundColor(.gray)
+                    HStack{
+                        Text(titleActivities)
+                            .font(.title)
+                            .fontWeight(.bold)
+                        Spacer() 
+                    }
+                        HStack{
+                            Text(subTittleActivities)
+                            .font(.subheadline)
+                            .foregroundColor(.black)
+                    }
                 }
-            
+                
+                .padding(15)
         }
     }
 }
 
 #Preview {
-    TittleActivitiesView()
+    TittleActivitiesView(titleActivities: "Atividades", subTittleActivities: "Realize as atividades e bata sua meta diária", imageActivities: "Seta")
 }
