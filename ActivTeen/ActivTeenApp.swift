@@ -11,8 +11,12 @@ import SwiftData
 struct ActivTeenApp: App {
     var body: some Scene {
         WindowGroup {
-            homePage()
-                .modelContainer(for: Song.self, inMemory: false)
+            NavigationStack {
+                CombinedPreview()
+            }
+            .modelContainer(for: Activity.self, inMemory: false)
+//            homePage()
+//                .modelContainer(for: Song.self, inMemory: false)
         }
     }
 }

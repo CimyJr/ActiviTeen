@@ -23,9 +23,7 @@ struct WriteSongView: View {
     var descriptionTitle: String
     var descriptionSubtitle: String?
     
-    @State private var text: String = ""
-    @Environment(\.modelContext) private var modelContext
-    @Query private var songs: [Song]
+    @Binding var text: String
     
     var body: some View {
         
@@ -57,28 +55,16 @@ struct WriteSongView: View {
                 }
             }
             .scrollContentBackground(.hidden)
-            .onAppear {
-                
-                if let savedSong = songs.first {
-                    text = savedSong.text
-                }
-            }
-            .onDisappear {
-                
-                if let savedSong = songs.first {
-                    savedSong.text = text
-                } else {
-                    let newSong = Song(text: text)
-                    modelContext.insert(newSong)
-                }
-            }
         }
     } 
 }
 
 #Preview {
-    WriteSongView(descriptionTitle: "Escreva uma música curta sobre o seu dia em até 30 palavras",descriptionSubtitle: "oiiiiiii")
-        .modelContainer(for: Song.self, inMemory: false)
+    WriteSongView(
+        descriptionTitle: "Escreva uma música curta sobre o seu dia em até 30 palavras",
+        descriptionSubtitle: "oiiiiiii",
+        text: .constant("")
+    )
 }
 
 
