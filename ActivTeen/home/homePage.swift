@@ -23,21 +23,26 @@ struct homePage: View {
                     Image(systemName: "gearshape").resizable().frame(
                         width: 40, height: 40)
                 }.padding(.top, 31)
-                NavigationLink{
+                NavigationLink {
                     ChallengersPage()
-                }label: {
-                    homeCard(text: "Desafios", image: "challengers",color: "challengers")
-                        .padding(.top, 9).cardRectangular()
+                } label: {
+                    homeCard(
+                        text: "Desafios", image: "challengers",
+                        color: "challengers"
+                    )
+                    .padding(.top, 9).cardRectangular()
                 }
                 HStack(spacing: 16) {
                     homeCard(
                         text: "Desenhos", image: "designs", color: "designs"
                     ).cardSquare()
-                    NavigationLink{
+                    NavigationLink {
                         CombinedPreview()
-                    }label: {
-                        homeCard(text: "Musicas", image: "music", color: "music")
-                            .cardSquare()
+                    } label: {
+                        homeCard(
+                            text: "Musicas", image: "music", color: "music"
+                        )
+                        .cardSquare()
                     }
                 }
                 HStack(spacing: 16) {
