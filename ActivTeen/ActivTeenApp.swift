@@ -12,7 +12,7 @@ struct ActivTeenApp: App {
     var body: some Scene {
         WindowGroup {
             CombinedPreview()
-                .modelContainer(for: Song.self, inMemory: true)
+                .modelContainer(for: Song.self, inMemory: false)
         }
     }
 }

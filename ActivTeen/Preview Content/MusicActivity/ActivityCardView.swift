@@ -29,7 +29,7 @@ struct ActivityCardView: View {
                 }) {
                     Image(systemName: isCompleted ? "checkmark.circle.fill"  : "circle")
                         .foregroundColor(.black)
-                        .font(.system(size: 24))
+                        .font(.system(size: 25))
                         
                 }
             }

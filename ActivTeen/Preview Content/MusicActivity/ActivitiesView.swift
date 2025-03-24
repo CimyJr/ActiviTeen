@@ -52,8 +52,9 @@ struct ActivitiesView: View {
     
     var body: some View {
         VStack {
-            
-            ProgressBarView(progress: .constant(progress), colorBar: Color.darkgreenTest)
+            HStack{
+                ProgressBarView(progress: .constant(progress), colorBar: Color.darkgreenTest)
+            }
             
             LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 20) {
                 ForEach(activities.indices, id: \.self) { index in
@@ -67,7 +68,7 @@ struct ActivitiesView: View {
                                 color1: activities[index].color2,
                                 color2: activities[index].color1
                             )
-                            .frame(width: 172, height: 181)
+                            .cardSquare()
                         }
                         
                     }
