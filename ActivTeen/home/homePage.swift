@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+
 struct homePage: View {
 
     let columns: [GridItem] = [
@@ -24,36 +25,38 @@ struct homePage: View {
                         width: 40, height: 40)
                 }.padding(.top, 31)
                 NavigationLink {
-                    ChallengersPage().modelContainer(
-                        for: Challenge.self, inMemory: false)
+                    ChallengersPage()
                 } label: {
                     homeCard(
-                        text: "Desafios", image: "challengers",
-                        color: "challengers"
+                        text: "Desafios", image: "labyrinthHomeIcon",
+                        color: "greenTest"
                     )
                     .padding(.top, 9).cardRectangular()
                 }
                 HStack(spacing: 16) {
                     homeCard(
-                        text: "Desenhos", image: "designs", color: "designs"
+                        text: "Desenhos", image: "drawHomeIcon", color: "PurpleTest"
                     ).cardSquare()
                     NavigationLink {
-                        CombinedPreview()
-                            .modelContainer(for: Activity.self, inMemory: false)
+                        ActivitiesView()
                     } label: {
                         homeCard(
-                            text: "Musicas", image: "music", color: "music"
+                            text: "Musicas", image: "musicIcon", color: "PurpleTest"
                         )
                         .cardSquare()
                     }
                 }
                 HStack(spacing: 16) {
-                    homeCard(text: "Livros", image: "book", color: "books")
-                        .cardSquare()
-                    homeCard(
-                        text: "Fotos", image: "pictures", color: "pictures"
-                    ).cardSquare()
-                }
+                    NavigationLink {
+                        ActivitiesBookView()
+                    } label: {
+                        homeCard(text: "Livros", image: "booksHomeIcon", color: "greenTest")
+                            .cardSquare()
+                    }
+                        homeCard(
+                            text: "Fotos", image: "photoHomeIcon", color: "greenTest"
+                        ).cardSquare()
+                    }
                 .padding(.bottom, 37)
             }.padding()
         }

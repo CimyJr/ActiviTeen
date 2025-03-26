@@ -12,6 +12,7 @@ struct ActivityCardView: View {
     var text: String
     var color1: Color
     var color2: Color
+    var textColor: Color
     
     var body: some View {
         ZStack {
@@ -28,7 +29,7 @@ struct ActivityCardView: View {
                     isCompleted.toggle()
                 }) {
                     Image(systemName: isCompleted ? "checkmark.circle.fill"  : "circle")
-                        .foregroundColor(.black)
+                        .foregroundColor(textColor)
                         .font(.system(size: 25))
                         
                 }
@@ -37,7 +38,7 @@ struct ActivityCardView: View {
             Text(text)
                 .font(.system(size: 15))
                 .fontWeight(.regular)
-                .foregroundColor(.black)
+                .foregroundColor(textColor)
                 .padding(10)
                 .multilineTextAlignment(.leading)
         }
@@ -47,5 +48,5 @@ struct ActivityCardView: View {
 }
 
 #Preview {
-    ActivityCardView(isCompleted: .constant(false), text: "Texto", color1: Color.greenTest, color2: Color.darkgreenTest)
+    ActivityCardView(isCompleted: .constant(false), text: "Texto", color1: Color.greenTest, color2: Color.darkgreenTest, textColor:Color.white)
 }

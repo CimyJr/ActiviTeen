@@ -14,7 +14,7 @@ struct ActivTeenApp: App {
             NavigationStack {
                 homePage()
             }
-            .modelContainer(for: [Activity.self, Challenge.self], inMemory: false)
+            .modelContainer(for: [Activity.self, Challenge.self, ActivityBook.self], inMemory: false)
 //            homePage()
 //                .modelContainer(for: Song.self, inMemory: false)
         }

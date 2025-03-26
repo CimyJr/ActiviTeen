@@ -21,7 +21,8 @@ struct TittleActivitiesView: View {
                     Rectangle()
                         .fill(colorHeader)
                         Image(imageActivities)
-                        
+                        .padding(.top, 65)
+                        .scaleEffect(0.5)
                 } .cardHeader()
                     
                 

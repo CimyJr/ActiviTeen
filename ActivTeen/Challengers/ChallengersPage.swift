@@ -50,7 +50,7 @@ struct ChallengersPage: View {
                 titleActivities: "Desafios",
                 subTittleActivities:
                     "Realize as atividades e cumpra o desafio mensal ",
-                imageActivities: "challengers", colorHeader: Color.greenTest)
+                imageActivities: "", colorHeader: Color.greenTest)
             
             if challenges.count > 0 {
                 ProgressBarView(progress: .constant(progress), colorBar: Color.darkgreenTest)

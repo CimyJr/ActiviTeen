@@ -62,7 +62,6 @@ struct WriteSongView: View {
 #Preview {
     WriteSongView(
         descriptionTitle: "Escreva uma música curta sobre o seu dia em até 30 palavras",
-        descriptionSubtitle: "oiiiiiii",
         text: .constant("")
     )
 }

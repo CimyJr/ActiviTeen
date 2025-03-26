@@ -24,7 +24,10 @@ struct homeCard: View {
             VStack {
                     if let image = image {
                     Image(image)
-                        .padding()
+                           
+                            .scaledToFit().frame(width: 150, height: 112)
+                            .scaleEffect(1.02)
+                        //.padding()
                 }
                 
                 
