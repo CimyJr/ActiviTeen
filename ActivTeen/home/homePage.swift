@@ -24,7 +24,8 @@ struct homePage: View {
                         width: 40, height: 40)
                 }.padding(.top, 31)
                 NavigationLink {
-                    ChallengersPage()
+                    ChallengersPage().modelContainer(
+                        for: Challenge.self, inMemory: false)
                 } label: {
                     homeCard(
                         text: "Desafios", image: "challengers",
@@ -38,6 +39,7 @@ struct homePage: View {
                     ).cardSquare()
                     NavigationLink {
                         CombinedPreview()
+                            .modelContainer(for: Activity.self, inMemory: false)
                     } label: {
                         homeCard(
                             text: "Musicas", image: "music", color: "music"
