@@ -27,31 +27,37 @@ struct homePage: View {
                     ChallengersPage()
                 } label: {
                     homeCard(
-                        text: "Desafios", image: "challengers",
-                        color: "challengers"
+                        text: "Desafios", image: "labyrinthHomeIcon",
+                        color: "greenTest"
                     )
                     .padding(.top, 9).cardRectangular()
                 }
                 HStack(spacing: 16) {
                     homeCard(
-                        text: "Desenhos", image: "designs", color: "designs"
+                        text: "Desenhos", image: "drawHomeIcon", color: "PurpleTest"
                     ).cardSquare()
                     NavigationLink {
-                        CombinedPreview()
+                        ActivitiesView()
+                            .modelContainer(for: Activity.self, inMemory: false)
                     } label: {
                         homeCard(
-                            text: "Musicas", image: "music", color: "music"
+                            text: "Musicas", image: "musicIcon", color: "PurpleTest"
                         )
                         .cardSquare()
                     }
                 }
                 HStack(spacing: 16) {
-                    homeCard(text: "Livros", image: "book", color: "books")
-                        .cardSquare()
-                    homeCard(
-                        text: "Fotos", image: "pictures", color: "pictures"
-                    ).cardSquare()
-                }
+                    NavigationLink {
+                        ActivitiesBookView()
+                            .modelContainer(for: ActivityBook.self, inMemory: true)
+                    } label: {
+                        homeCard(text: "Livros", image: "booksHomeIcon", color: "greenTest")
+                            .cardSquare()
+                    }
+                        homeCard(
+                            text: "Fotos", image: "photoHomeIcon", color: "greenTest"
+                        ).cardSquare()
+                    }
                 .padding(.bottom, 37)
             }.padding()
         }
